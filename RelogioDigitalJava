@@ -1,0 +1,142 @@
+/* ESSE PROJETO CRIA UM RELOGIO DIGITAL, QUE VC DEFINE A HORA NO CODIGO E  USA O JAVASWING PARA CRIAR A INTERFACE GRAFICA
+*  BEM SIMPLES, MEU PRIMEIRO PROGRAMA REAL ESTUDANDO JAVA, SEM USAR QUALQUER TIPO DE IA, TOTALMENTE FEITO POR MIM
+*  VOU DESCREVER ELE ABAIXO
+*/
+
+// CLASSE COM A LOGICA DO FUNCIONAMENTO DO RELOGIO
+
+import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
+public class DadosRelogio {
+//VARIAVEIS PRIVADAS 
+	private int hora;
+	private int min;
+	private int seg = 0;
+
+// CONSTRUTOR ONDE VC JA PODE INICIAR COM OS VALORES DA DATA E MIN, O SEGUNDO INICIA COM ZERO
+	DadosRelogio(int hora, int min){
+		this.hora = hora;
+		this.min = min;
+	}
+
+	public void horaDinamica(JLabel lblHora) throws InterruptedException {
+
+		while(this.hora != 61) {
+
+			Thread.sleep(1000); // PARA DIMINUIR A VELOCIDADE, VAI PASSAR A POR SEGUNDO 
+
+			String horaFormatada = String.format("%02d : %02d : %02d", this.hora, this.min, this.seg);
+			System.out.println(horaFormatada);
+
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					lblHora.setText(horaFormatada);
+				}
+			});
+
+			this.seg++;
+
+			if(this.seg == 60) {
+				this.seg = 0;
+				this.min++;
+			}
+			if(this.min == 60) {
+				this.min = 0;
+				this.hora++;
+			}
+			if(this.hora == 24) {
+				this.hora = 0;
+			}
+		}
+	}
+}
+
+//
+
+// CLASSE QUE CRIA A INTERFACE GRAFICA SIMPLES DO RELOGIO
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+import java.awt.Font;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+public class InterfaceRelogio extends JFrame {
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private JLabel lblHora;
+
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					InterfaceRelogio frame = new InterfaceRelogio();
+					frame.setVisible(true);
+
+					DadosRelogio r1 = new DadosRelogio(01, 16);
+
+					Thread threadRelogio = new Thread(new Runnable() {
+						public void run() {
+							try {
+								r1.horaDinamica(frame.lblHora);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+						}
+					});
+					threadRelogio.start();
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	public InterfaceRelogio() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 545, 365);
+
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout());
+		setContentPane(contentPane);
+
+		lblHora = new JLabel("00 : 00 : 00");
+		lblHora.setFont(new Font("Tahoma", Font.BOLD, 48));
+		lblHora.setHorizontalAlignment(SwingConstants.CENTER);
+
+		contentPane.add(lblHora, BorderLayout.CENTER);
+	}
+}
+
+// CLASSE QUE FIZ SÓ PARA TESTAR O CODIGO
+
+package relogioDigital;
+import java.util.Scanner;
+
+public class TesteRelogio {
+	public static void main(String[] args) throws InterruptedException {
+	Scanner sc = new Scanner(System.in);
+	int hora =0, minutos=0;
+	
+	System.out.println("DIGITE A HORA: ");
+	hora=sc.nextInt();
+	System.out.println("DIGITE OS MINUTOS: ");
+	minutos= sc.nextInt();
+	DadosRelogio relogio = new DadosRelogio(hora,minutos);
+	
+	
+		
+
+	}
+
+}
+
+
+
+
+
