@@ -13,7 +13,7 @@ public class DadosRelogio {
 	private int min;
 	private int seg = 0;
 
-// CONSTRUTOR ONDE VC JA PODE INICIAR COM OS VALORES DA DATA E MIN, O SEGUNDO INICIA COM ZERO
+// CONSTRUTOR ONDE VC JA PODE INICIAR COM OS VALORES DA HORA E MIN, O SEGUNDO INICIA COM ZERO
 	DadosRelogio(int hora, int min){
 		this.hora = hora;
 		this.min = min;
