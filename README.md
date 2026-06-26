@@ -10,7 +10,18 @@ Um relógio digital simples que permite definir a hora inicial no código e exib
 - Interface gráfica com `JFrame` e `JLabel`
 - Uso de Threads para manter a interface responsiva
 
-### 🚀 Como executar
-1. Clone este repositório:
-   ```bash
-   git clone https://github.com/Might-DEV/ProjetosJava-Faculdade.git
+-----Arquivos (RelogioDigitalJava) obs: classes e demais ja ta tudo nesse arquivo
+
+  
+---------------------------------------------------------------------------------
+/**
+  ## Projeto Java Calculadora Simples ##
+ * Este programa realiza operações matemáticas básicas:
+ * soma, subtração, multiplicação e divisão.
+ * Utilizei Interface,Classe, Métodos.
+ * Pretendo atulizar e por uma interface grafica (GUI)
+ * Bom para praticar e entender interface e implementar na classe
+ * Autor: Marlon
+ * Data: 26/06/2026
+ */   
+-----Arquivos (MainCalculadora,Operacoes,Calcular)
