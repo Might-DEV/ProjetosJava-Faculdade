@@ -22,7 +22,7 @@ public class Operacoes implements Calcular {
     @Override
     public double dividir() {
         if (n2 == 0) {
-            System.out.println("⚠️ NÃO É POSSÍVEL DIVISÃO POR ZERO");
+            System.out.println("!!! NÃO É POSSÍVEL DIVISÃO POR ZERO !!!");
             return Double.NaN; 
         }
         return n1 / n2;
